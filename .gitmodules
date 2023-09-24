@@ -1,18 +1,24 @@
 [submodule "libgc"]
 	path = libgc
 	url = git@github.com:frefolli/libgc
+    branch = master
 [submodule "libutils"]
 	path = libutils
 	url = git@github.com:frefolli/libutils
+    branch = master
 [submodule "libhyper"]
 	path = libhyper
 	url = git@github.com:frefolli/libhyper
+    branch = master
 [submodule "libclipp"]
 	path = libclipp
 	url = git@github.com:frefolli/libclipp
+    branch = master
 [submodule "liblexer"]
 	path = liblexer
 	url = git@github.com:frefolli/liblexer
+    branch = master
 [submodule "libparser"]
 	path = libparser
 	url = git@github.com:frefolli/libparser
+    branch = master
