@@ -11,6 +11,7 @@ mindmap
     libclipp
     liblexer
     libparser
+    liblogger (FUTURE)
 ```
 
 # Some tricks
