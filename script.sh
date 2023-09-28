@@ -1,6 +1,6 @@
 #!/bin/bash
 
-REPOS="libclipp  libgc  libhyper  liblexer  libparser  libutils"
+REPOS="libclipp  libgc  libhyper  liblexer  libparser  libutils liblogger"
 THIS_PATH=$(dirname "$0")
 
 function download() {
