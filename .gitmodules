@@ -33,3 +33,8 @@
 	url = git@github.com:frefolli/liblogger
     branch = master
     update = merge
+[submodule "libajax"]
+	path = libajax
+	url = git@github.com:frefolli/libajax
+    branch = master
+    update = merge
