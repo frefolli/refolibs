@@ -90,6 +90,14 @@ function do_assert() {
     fi
 }
 
+function do_update() {
+    if [[ "$THIS_PATH" != '.' ]]; then
+        echo -e "must execute $0 from it's own directory"
+    else
+        git submodule update --remote
+    fi
+}
+
 if [ ! -z "$1" ]; then
     if [[ "$1" == 'clone' ]]; then
         do_clone
@@ -101,7 +109,9 @@ if [ ! -z "$1" ]; then
         do_status
     elif [[ "$1" == 'assert' ]]; then
         do_assert
+    elif [[ "$1" == 'update' ]]; then
+        do_update
     fi
 else
-    echo -e "choose an action [clone | pull | push | status | assert ...]"
+    echo -e "choose an action [clone | pull | push | status | assert | update ...]"
 fi
