@@ -38,3 +38,8 @@
 	url = git@github.com:frefolli/libajax
     branch = master
     update = merge
+[submodule "libligma"]
+	path = libligma
+	url = git@github.com:frefolli/libligma
+    branch = master
+    update = merge

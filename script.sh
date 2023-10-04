@@ -1,6 +1,6 @@
 #!/bin/bash
 
-REPOS="libclipp  libgc  libhyper  liblexer  libparser  libutils liblogger libajax"
+REPOS="libclipp  libgc  libhyper  liblexer  libparser  libutils liblogger libajax libligma"
 THIS_PATH=$(dirname "$0")
 
 function clone_repo() {
