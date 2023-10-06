@@ -3,6 +3,20 @@
 REPOS="libclipp  libgc  libhyper  liblexer  libparser  libutils liblogger libajax libligma"
 THIS_PATH=$(dirname "$0")
 
+function not_in_this_folder() {
+    if [[ "$THIS_PATH" == '.' ]]; then
+        echo -e "cannot execute this action of $0 from it's own directory"
+        exit 1
+    fi
+}
+
+function in_this_folder() {
+    if [[ "$THIS_PATH" != '.' ]]; then
+        echo -e "must execute this action of $0 from it's own directory"
+        exit 1
+    fi
+}
+
 function clone_repo() {
     REPO="$1"
     echo -e "Scripts::Clone($REPO)"
@@ -37,65 +51,52 @@ function status_repo() {
 }
 
 function do_clone() {
-    if [[ "$THIS_PATH" == '.' ]]; then
-        echo -e "cannot execute $0 from it's own directory"
-    else
-        for repo in $REPOS; do
-            clone_repo $repo
-        done
-    fi
+    not_in_this_folder
+    for repo in $REPOS; do
+        clone_repo $repo
+    done
 }
 
 function do_pull() {
-    if [[ "$THIS_PATH" == '.' ]]; then
-        echo -e "cannot execute $0 from it's own directory"
-    else
-        for repo in $REPOS; do
-            pull_repo $repo
-        done
-    fi
+    not_in_this_folder
+    for repo in $REPOS; do
+        pull_repo $repo
+    done
 }
 
 function do_push() {
-    if [[ "$THIS_PATH" == '.' ]]; then
-        echo -e "cannot execute $0 from it's own directory"
-    else
-        for repo in $REPOS; do
-            push_repo $repo
-        done
-    fi
+    not_in_this_folder
+    for repo in $REPOS; do
+        push_repo $repo
+    done
 }
 
 function do_status() {
-    if [[ "$THIS_PATH" == '.' ]]; then
-        echo -e "cannot execute $0 from it's own directory"
-    else
-        for repo in $REPOS; do
-            status_repo $repo
-        done
-    fi
+    not_in_this_folder
+    for repo in $REPOS; do
+        status_repo $repo
+    done
 }
 
 function do_assert() {
-    if [[ "$THIS_PATH" == '.' ]]; then
-        echo -e "cannot execute $0 from it's own directory"
-    else
-        for repo in $REPOS; do
-            if [ -d $repo ]; then
-                pull_repo $repo
-            else
-                clone_repo $repo
-            fi
-        done
-    fi
+    not_in_this_folder
+    for repo in $REPOS; do
+        if [ -d $repo ]; then
+            pull_repo $repo
+        else
+            clone_repo $repo
+        fi
+    done
 }
 
 function do_update() {
-    if [[ "$THIS_PATH" != '.' ]]; then
-        echo -e "must execute $0 from it's own directory"
-    else
-        git submodule update --remote
-    fi
+    in_this_folder
+    git submodule update --remote
+}
+
+function do_init() {
+    in_this_folder
+    git submodule init
 }
 
 if [ ! -z "$1" ]; then
@@ -111,6 +112,8 @@ if [ ! -z "$1" ]; then
         do_assert
     elif [[ "$1" == 'update' ]]; then
         do_update
+    elif [[ "$1" == 'init' ]]; then
+        do_init
     fi
 else
     echo -e "choose an action [clone | pull | push | status | assert | update ...]"
